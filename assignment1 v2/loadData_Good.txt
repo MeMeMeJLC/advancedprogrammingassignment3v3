@@ -1,0 +1,10 @@
+A002 F 22 222 Overweight 999
+A011 M 33 123 Underweight 87
+A599 M 23 111 Normal 888
+C234 F 77 888 Obesity 789
+D455 M 55 764 Underweight 222
+E305 F 44 656 Obesity 55
+F456 F 54 333 Underweight 77
+G345 F 19 999 Underweight 66
+G343 F 20 555 Underweight 666
+H444 M 60 321 Normal 665

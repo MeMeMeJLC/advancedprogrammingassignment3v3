@@ -1,0 +1,14 @@
+UnitTests = loadData_Bad.txt
+
+id_too_long(): 
+	id_list[1] = None  #rawdata = 'a0111', should be None ~~ too long
+gender_invalid_char():
+	gender_list[1] = None #rawdata = '?', should be None ~~ invalid char
+bmi_lowercase():
+	bmi_list[1[1]] = isUpper #rawdata = 'u', should be uppercase ~~ invalid char
+income_field_empty():
+	income_list[3] = None # rawdata = " ", should be None ~~ no data entered
+gender_char_correct():
+	gender_list[5] = 'F' #rawdata = 'F', should be 'F' ~~ valid char
+bmi_field_empty():
+	bmi_list[4] = None #raw_data = " ", should be None ~~ no data entered
