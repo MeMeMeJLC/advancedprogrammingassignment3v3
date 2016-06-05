@@ -74,72 +74,51 @@ class Model():
 
 class Validate(object):
     def check_if_valid(self, element):
+        match_param = self.get_match_param()
+        match = self.run_match(match_param, element)
+        self.result(match)
+
+    def get_match_param(self):
         raise NotImplementedError
-        """match = self.getMatch()
-        self."""
+
+    def run_match(self, match_param, element):
+        return re.match(match_param, element)
+
+    def result(self, match):
+        if match is None:
+            print('element format incorrect:  entered as None')
+            return match
+
 
 class Validate_ID(Validate):
-    def check_if_valid(self, id):
-        print(id)
-        match_id = re.match('[A-Z][0-9]{3}', id)
-        if match_id is None or len(id) is not 4:
-            print('id format incorrect: id entered as None')
-            id = None
-            print(id)
-            return (id)
-        else:
-            return id
+    def get_match_param(self):
+        return '[A-Z][0-9]{3}'
+
 
 class Validate_Gender(Validate):
-    def check_if_valid(self, gender):
-        match_gender = re.match('(M|F)', gender)
-        if match_gender is None:
-            print('gender format incorrect:  entered as None')
-            gender = None
-            return gender
-        else:
-            return gender
+    def get_match_param(self):
+        return '(M|F)'
+
 
 class Validate_Age(Validate):
-    def check_if_valid(self, age):
-        match_age = re.match('[0-9]{2}', age)
-        if match_age is None or len(age) is not 2:
-            print('age format incorrect:  entered as 0')
-            age = 0
-            return age
-        else:
-            return int(age)
+    def get_match_param(self):
+        return '[0-9]{2}'
 
 
 class Validate_Sales(Validate):
-    def check_if_valid(self, sales):
-        match_sales = re.match('[0-9]{3}', sales)
-        if match_sales is None or len(sales) is not 3:
-            print('sales format incorrect:  entered as 0')
-            sales = 0
-            return sales
-        else:
-            return int(sales)
+    def get_match_param(self):
+        return '[0-9]{3}'
+
 
 class Validate_BMI(Validate):
-    def check_if_valid(self, bmi):
-        match_bmi = re.match('(Normal|Overweight|Obesity|Underweight)', bmi)
-        if match_bmi is None:
-            print('bmi format incorrect:  entered as None')
-            bmi = None
-            return bmi
-        else:
-            return bmi
+    def get_match_param(self):
+        return '(Normal|Overweight|Obesity|Underweight)'
+
 
 class Validate_Income(Validate):
-    def check_if_valid(self, income):
-        match_income = re.match('[0-9]{2,3}', income)
-        if match_income is None or len(income) > 3:
-            print('income format incorrect:  entered as 0')
-            income = 0
-            return income
-        else:
-            return int(income)
+    def get_match_param(self):
+        return '[0-9]{2,3}'
+
 
 class View():
     pass
