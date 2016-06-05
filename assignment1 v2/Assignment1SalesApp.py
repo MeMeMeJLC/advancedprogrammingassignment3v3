@@ -82,17 +82,25 @@ class Validate(object):
         raise NotImplementedError
 
     def run_match(self, match_param, element):
-        return re.match(match_param, element)
+        if re.match(match_param, element):
+            return element
 
     def result(self, match):
         if match is None:
             print('element format incorrect:  entered as None')
-            return match
+        return match
 
 
 class Validate_ID(Validate):
     def get_match_param(self):
         return '[A-Z][0-9]{3}'
+
+    def result(self, match):
+        print(match)
+        if match is None or len(match) is not 4:
+            print('element format incorrect:  entered as None')
+            match = None
+        return match
 
 
 class Validate_Gender(Validate):
@@ -104,10 +112,25 @@ class Validate_Age(Validate):
     def get_match_param(self):
         return '[0-9]{2}'
 
+    def result(self, match):
+        if match is None or len(match) is not 2:
+            print('element format incorrect:  entered as None')
+            match = None
+            return match
+        else:
+            return int(match)
 
 class Validate_Sales(Validate):
     def get_match_param(self):
         return '[0-9]{3}'
+
+    def result(self, match):
+        if match is None or len(match) is not 3:
+            print('element format incorrect:  entered as None')
+            match = None
+            return match
+        else:
+            return int(match)
 
 
 class Validate_BMI(Validate):
@@ -118,6 +141,13 @@ class Validate_BMI(Validate):
 class Validate_Income(Validate):
     def get_match_param(self):
         return '[0-9]{2,3}'
+
+    def result(self, match):
+        if match is None or len(match) > 3:
+            print('element format incorrect:  entered as None')
+            match = None
+        else:
+            return int(match)
 
 
 class View():
