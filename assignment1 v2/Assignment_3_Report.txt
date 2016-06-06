@@ -1,0 +1,83 @@
+Advanced Programming Assignment 3 - Jeremy Cook using my assignment 1
+
+1.
+
+
+2.a.1 - 
+	/step_1_class_diagram_before_design_pattern.vsd
+	
+2.a.2 - 
+	before = lines 137 - 301
+
+2.a.3 - 
+	Strategy Design Pattern
+	
+2.a.4 - 
+	My main focus in approaching this task was to remove as much code duplication as possible. Each validate_x were different but related, and were largely duplicated, but did vary a little in there implementation. I wanted to make an abstract strategy that laid out the strategy and then enforce that strategy for the concrete strategies to implement. In and of itself this made little difference as each concrete strategy still had roughly the same copy and pasted code. 
+	
+	The main advantage would come with the application of the next design pattern, the template method. Where because of the new structure I could move some of the repeated code to the Abstract strategy class. Leaving the structure as it was there was no where for me to put the repeated code in one central location where it could be reused.
+	
+	I also wanted to move the app towards having more classes that were smaller and more focussed, rather than having one Model class that did everything. Encapsulating the validation implementation that the Model class didn't need to know about. All the Model needed was for the data to be validated and then added to the list, it didn't really care how this happened.
+	
+2.a.5 - 
+	step_2_class_diagram_after_strategy_design_pattern.vsd
+	
+2.a.6 -
+	Design pattern implemented
+
+
+	
+2.b.1 - 
+	step_2_class_diagram_after_strategy_design_pattern.vsd
+	
+2.b.2 - 
+	before implementation lines 75 - 142
+	
+2.b.3 - 
+	Template Method Design Pattern
+	
+2.b.4 - 
+	In implementing the Template Method design pattern I wanted to centralise the repeated code in the Abstract Validate Class and just reuse that. In the concrete classes I only wanted to have the small parts that did vary. 
+
+	To achieve this I made the check_if_valid() into the template method which called the other methods in the correct order. First method called was to return the specific regex required to check the validation, which would be called from the concrete class, as this varied in it's implementation depending on the particular type of data being checked.
+
+	The specific regex would then be returned and used in the parameter of the run_match() method which was a primitive method that was the code that didn't vary in it's implementation. Then the result from the match would need to be put into the appropriate list, which varied between the different implementations. This was done by finally calling the add_result() method getting the primitive method from the sub class.
+
+	Doing this created a medium sized abstract class, but then shrank the concrete methods to 2 small methods. It makes the code much easier to read, and also makes it easier to maintain the code because if the algorithm is changed it doesn't need to be across the 6 different implementations. The main reused code just needs to be changed in one place.
+
+2.b.5 - 
+	/step_3_class_diagram_after_template_method_design_pattern.vsd
+	
+2.b.6 - 
+	Design pattern implemented
+	
+	
+	
+3. 
+	I will look at the effectiveness of the Strategy design pattern.
+	
+3.1
+	Determining Object Granularity
+		The original code had a large Model object that did everything. The strategy design pattern gave me a sense of the appropriate size of objects. I could see that objects were meant to be more focussed. 
+		
+		In assignment 2 in trying to fix the Model class I just shrank the code by having more iterating. Without the design pattern I didn't consider that the problem could be fixed by creating more, but smaller, classes.
+
+3.2
+	Finding Appropriate Objects
+		The design pattern helped me see that although validation seemed like a small part of the code that was undeserving of it's own set of classes, it was in fact analogous to making pizza. And if each type of pizza in it's different implementations could have their own class then the validation could.
+	
+3.3
+	Designing for changed
+		Having all the procedures run under the one class in the old code I was very nervous to make any changes because the code seemed so complex in the way it worked. It felt like there were more connections between procedures than were necessary, and any changes could have any number of unintended consequences. I was the one who wrote the code and I felt that way, let alone someone else completely unfamiliar with it.
+	
+		By separating the validation from the Model class it is now easier to limit the risks of changing the app. Changes to the validation will only impact that particular part. It doesn't stop the potential for breaking it, but when something goes wrong with the validation you only need to look in one part of the code. 
+		
+3.4
+	Specifying Object Interfaces
+		Following from the above discussion is the fact that the decoupling of Model from validation allowed for the simplification of the connection by specifying an interface for validation. The only connection between the Model and validation is the element parameter that is passed in. The Model doesn't need to know about the specific implementation to be carried out, just it needing to pass in the appropriate data. The validation object takes care of the rest.
+		
+3.5
+	Specifying Object Implementation
+		The application of the design pattern helped to specify the object implementation by enforcing a standard for how the validation must be implemented. By having an abstract class that sets out specific methods that are required of its subclasses it means that any new validation classes must follow the same basic rules. They must use the same method names and take the same parameters, otherwise the app will break. 
+		Although the specific implementation does vary with some of the methods, such as the get_match_param(), the class must still implement a get_match_param(). Without this specification each class could have completely different and inconsistent names, making it much harder to understand the code. 
+		
