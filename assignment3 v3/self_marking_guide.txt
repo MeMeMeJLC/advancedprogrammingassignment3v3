@@ -1,0 +1,4 @@
+Question 1 2/3 - I'm starting to doubt my choice of design pattern. Think it may be wrong.
+Question 2a 6/6 - Thought I applied the design pattern well and with good results.
+Question 2b 5/6 - Thought I applied the design pattern well and with good results.
+Question 3 4/5 - Not sure this has been done well enough for full marks.

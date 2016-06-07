@@ -120,7 +120,7 @@ class Validate_BMI(Validate):
         return '(Normal|Overweight|Obesity|Underweight)'
 
     def add_result(self, match):
-       Model.bmi_list.append(match)
+        Model.bmi_list.append(match)
 
 
 class Validate_Income(Validate):
